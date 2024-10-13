@@ -85,15 +85,15 @@ void loop() {
   //Kalman filter
   float Dis = kalmanFilter1.updateEstimate(rawDistance);
   float Tor = kalmanFilter2.updateEstimate(rawTorque);
-  distance = (((Dis*(5.0/900))*(317/4.4))-137);
-  torque = (0.008*Tor)*10.0;
+  distance = (Dis/((4094 - 20)/317.5)); //(((Dis*(5.0/900))*(317/4.4)));
+  torque = (0.008*Tor)*10.0;  // 10.8V full tải 4N.m --- 0.2V không tải --- tăng 1N.m nhân cho 2.65 (10.8V-0.2V)/4Nm= 2.65
   
   Serial.print("Distance: ");
   Serial.println(distance);
   Serial.print("Torque: ");
   Serial.println(torque);
-  Serial.print("Count: ");
-  Serial.println(encoder);
+  Serial.print("Count: ");   
+  Serial.println(encoder);       
   encoderCount=0;
   
   delay(100); 

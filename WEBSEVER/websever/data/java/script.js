@@ -659,21 +659,21 @@ document.addEventListener("DOMContentLoaded", function() {
       credits: { enabled: false }
   });
 
-  // // Update intervals
-  // setInterval(function() {
-  //     requestData("/distance", chartD);
-  // }, 300);
-  // setInterval(function() {
-  //     requestData("/torque", chartT);
-  // }, 300);
+  // Update intervals
+  setInterval(function() {
+       requestData("/distance", chartD);
+   }, 300);
+  setInterval(function() {
+       requestData("/torque", chartT);
+   }, 300);
 
-  // setInterval(function() {
-  //   requestData("/power", chartP);
-  // }, 300);
+  setInterval(function() {
+      requestData("/power", chartP);
+   }, 300);
 
-  // setInterval(function() {
-  //     requestData("/encoder", chartE);
-  // }, 300);
+  setInterval(function() {
+      requestData("/encoder", chartE);
+   }, 300);
 
   // Function to request data
   function requestData(endpoint, chart) {
