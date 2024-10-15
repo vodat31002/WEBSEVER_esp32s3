@@ -10,8 +10,8 @@
 #define ENCODER_PIN_B 35    // Chân encoder B
 
 // Wi-Fi 
-const char* ssid = "DAXVOX";
-const char* password = "123443215";
+const char* ssid = "VanDat";
+const char* password = "thanhdatanh";
 
 // Đặt biến toàn cục 
 AsyncWebServer server(80);
@@ -232,7 +232,7 @@ void processReceivedData(char* data) {
 void checkSPIFFSFiles() {
   const char* files[] = {
     "/index1.html",
-    "/index2.html",
+    "/index2.html",  
     "/index3.html",
     "/css/main.css",
     "/css/base.css",

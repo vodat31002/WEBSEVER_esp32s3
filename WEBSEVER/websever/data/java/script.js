@@ -308,7 +308,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Gauge for tor
+    // Gauge for torque
     var chartTorque = JSC.chart('chartDiv2', {
       title: {
         label: {
@@ -361,7 +361,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }]
     });
   
-    // Gauge for pos
+    // Gauge for position
     var chartPosition = JSC.chart('chartDiv1', {
       title: {
         label: {
@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", function() {
           color: 'smartPalette',
           breaks_gap: 0.06
         },
-        scale_range: [0, 130]
+        scale_range: [0, 320]
       },
       palette: {
         pointValue: '{%value/20}',
@@ -414,7 +414,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }]
     });
 
-    // Gauge for temperature
+    // Gauge for encoder
     var chartEncoder = JSC.chart('chartDiv3', {
       title: {
         label: {
