@@ -720,7 +720,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let updateIntervalD, updateIntervalT, updateIntervalP, updateIntervalE;
 let isUpdating = false;
-let rowNumb = 1;
+var rowNumb = 1;
 /* CÀI ĐẶT CÁC NÚT NHẤN CHO 3 CTRINH */
 document.addEventListener('DOMContentLoaded', function () {
   let drillState = false; // false means off, true means on
