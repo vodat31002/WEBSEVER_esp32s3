@@ -548,9 +548,9 @@ document.addEventListener("DOMContentLoaded", function () {
     requestData("/encoder", chartEncoder, 'encoder');
   }, 300);
 
-  setInterval(function () {
-    requestData("/power", chartPower, 'power');
-  }, 300);
+  // setInterval(function () {
+  //   requestData("/power", chartPower, 'power');
+  // }, 300);
 
 });
 
@@ -671,9 +671,9 @@ document.addEventListener("DOMContentLoaded", function () {
     requestData("/torque", chartT);
   }, 300);
 
-  setInterval(function () {
-    requestData("/power", chartP);
-  }, 300);
+  // setInterval(function () {
+  //   requestData("/power", chartP);
+  // }, 300);
 
   setInterval(function () {
     requestData("/encoder", chartE);
