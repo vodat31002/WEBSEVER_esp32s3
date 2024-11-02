@@ -712,6 +712,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   });
 });
+
 let updateIntervalD, updateIntervalT, updateIntervalP, updateIntervalE;
 let isUpdating = false;
 
@@ -726,6 +727,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       startUpdatingCharts();
       isUpdating = true;
+      addTableRow()
     }
   });
 
@@ -736,6 +738,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       stopUpdatingCharts();
       isUpdating = false;
+      addTableRow()
     }
   });
 
@@ -1241,6 +1244,38 @@ document.addEventListener("DOMContentLoaded", function () {
     chartT.series[0].setData([]);
     chartP.series[0].setData([]);
     chartE.series[0].setData([]);
+  }
+
+  function addTableRow(){
+    const rowNumb = 1;
+
+    const table = document.getElementById("responsive-table").getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
+      
+    // Add cells to the row
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    const cell3 = newRow.insertCell(2);
+    const cell4 = newRow.insertCell(3);
+    const cell5 = newRow.insertCell(4);
+
+    //Incread new row
+    rowNumber++;
+
+    // Add content to the cells
+    // updateIntervalD for distance 
+    // updateIntervalT for torque
+    // updateIntervalP for power 
+    // updateIntervalE for encoder
+    cell1.innerHTML = Math.floor(Date.now() / 1000);
+    // cell2.innerHTML = updateIntervalE;
+    // cell3.innerHTML = updateIntervalD;
+    // cell4.innerHTML = updateIntervalT;
+    // cell5.innerHTML = updateIntervalP;
+    cell2.innerHTML = 300;
+    cell3.innerHTML = 500;
+    cell4.innerHTML = 600;
+    cell5.innerHTML = 800;
   }
 
 

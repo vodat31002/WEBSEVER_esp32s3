@@ -14,6 +14,66 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
+
+    <style>
+        .table-wrapper {
+          max-width: 100%;
+          overflow-x: auto;
+        }
+        
+        .responsive-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 14px;
+          border: 1px solid #ddd;
+        }
+        
+        .responsive-table th, .responsive-table td {
+          padding: 8px;
+          text-align: left;
+          border: 1px solid #ddd;
+        }
+        
+        .responsive-table th {
+          background-color: #6495ED; /* Upload picture color */
+          color: white;
+          text-align: center;
+        }
+        
+        .table-header {
+          background-color: #6495ED; /* Upload picture color */
+          color: white;
+        }
+        
+        @media (max-width: 767px) {
+          .responsive-table, .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr {
+            display: block;
+          }
+        
+          .responsive-table th {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+          }
+        
+          .responsive-table td {
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+          }
+        
+          .responsive-table td:before {
+            position: absolute;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            content: attr(data-label);
+            font-weight: bold;
+          }
+        }
+    </style>
     
     <body>
         <!-- Block Element Modifer-->
@@ -53,7 +113,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li class="header__notify-item header__notify-item--viewed">
+                                        <!-- <li class="header__notify-item header__notify-item--viewed">
                                             <a href="" class="header__notify-link">
                                                 <img src="https://drive.google.com/thumbnail?id=1ZYk0R5X9BZY-6STzzU1lVxtpMKXSJIx4" alt="" class="header__notify-img">
                                                 <div class="header__notify-info">
@@ -61,7 +121,7 @@
                                                     <span class="header__notify-description">Active</span>
                                                 </div>
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li class="header__notify-item header__notify-item--viewed">
                                             <a href="" class="header__notify-link">
                                                 <img src="https://drive.google.com/thumbnail?id=1cAVW7Dd3GgqboCWFnmEs7XVqqbwQptPo" alt="" class="header__notify-img">
@@ -225,9 +285,9 @@
                                     <li class="category-item category-item--active">
                                         <a href="index1.html" class="category-item__link" onclick="switchProgram(1)">Program 1</a>
                                     </li>
-                                    <li class="category-item">
+                                    <!-- <li class="category-item">
                                         <a href="index2.html" class="category-item__link" onclick="switchProgram(2)">Program 2</a>
-                                    </li>
+                                    </li> -->
                                     <li class="category-item">
                                         <a href="index3.html" class="category-item__link" onclick="switchProgram(3)">Program 3</a>
                                     </li>
@@ -238,8 +298,8 @@
                         <div class="grid__column-10"> 
                             <div class="home-filter">
                                 <span class="home-filter__label">Operating Panel</span>
-                                <button id="startButton" class="home-filter__btn btn" onclick="startProgram()">Start</button>
-                                <button id="stopButton" class="home-filter__btn btn" onclick="stopProgram()">Stop</button>
+                                <button id="startButton" class="home-filter__btn btn">Start</button>
+                                <button id="stopButton" class="home-filter__btn btn">Stop</button>
                                 <button id="resetButton" class="home-filter__btn btn">Reset</button>
                                 <button id="exportButton" class="home-filter__btn btn">Export</button>
                                 <div class="home-filter__page">
@@ -283,6 +343,58 @@
                                     </div>
                                 </div>                                
                             </div>
+
+                            <div class="table-wrapper">
+                                <table class="responsive-table">
+                                  <thead>
+                                    <tr class="table-header">
+                                      <th>TIME</th>
+                                      <th>POSITION</th>
+                                      <th>MOMENT</th>
+                                      <th>SPEED</th>
+                                      <th>POWER</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <!-- <tr>
+                                      <td data-label="TIME"></td>
+                                      <td data-label="POSITION"></td>
+                                      <td data-label="MOMENT"></td>
+                                      <td data-label="SPEED"></td>
+                                      <td data-label="POWER"></td>
+                                    </tr>
+                                    <tr>
+                                      <td data-label="TIME"></td>
+                                      <td data-label="POSITION"></td>
+                                      <td data-label="MOMENT"></td>
+                                      <td data-label="SPEED"></td>
+                                      <td data-label="POWER"></td>
+                                    </tr>
+                                    <tr>
+                                      <td data-label="TIME"></td>
+                                      <td data-label="POSITION"></td>
+                                      <td data-label="MOMENT"></td>
+                                      <td data-label="SPEED"></td>
+                                      <td data-label="POWER"></td>
+                                    </tr>
+                                    <tr>
+                                      <td data-label="TIME"></td>
+                                      <td data-label="POSITION"></td>
+                                      <td data-label="MOMENT"></td>
+                                      <td data-label="SPEED"></td>
+                                      <td data-label="POWER"></td>
+                                    </tr>
+                                    <tr>
+                                      <td data-label="TIME"></td>
+                                      <td data-label="POSITION"></td>
+                                      <td data-label="MOMENT"></td>
+                                      <td data-label="SPEED"></td>
+                                      <td data-label="POWER"></td>
+                                    </tr>
+                                  </tbody> -->
+                                </table>
+                            </div>
+
                             <ul class="pagination home-product__pagination">
                                 <li class="pagination-item">
                                     <a href="" id="paginationPrev" class="pagination-item__link">
