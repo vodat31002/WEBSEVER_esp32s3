@@ -1321,9 +1321,9 @@ function addTableRow() {
     console.log("D: " , updateIntervalP)
     const now = new Date
     cell1.innerHTML = `Date - ${now.getDay()}:${now.getMonth() + 1}:${now.getFullYear()} Time - ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
-    cell2.innerHTML = updateIntervalE;
-    cell3.innerHTML = updateIntervalD;
-    cell4.innerHTML = updateIntervalT;
+    cell2.innerHTML = updateIntervalE / 12;
+    cell3.innerHTML = updateIntervalD / 12;
+    cell4.innerHTML = updateIntervalT / 12;
     cell5.innerHTML = "";
 }
 
