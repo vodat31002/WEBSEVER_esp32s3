@@ -1319,15 +1319,12 @@ function addTableRow() {
     console.log("B: " , updateIntervalD)
     console.log("C: " , updateIntervalT)
     console.log("D: " , updateIntervalP)
-    cell1.innerHTML = Math.floor(Date.now() / 1000);
+    const now = new Date
+    cell1.innerHTML = `Date - ${now.getDay()}:${now.getMonth() + 1}:${now.getFullYear()} Time - ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
     cell2.innerHTML = updateIntervalE;
     cell3.innerHTML = updateIntervalD;
     cell4.innerHTML = updateIntervalT;
-    cell5.innerHTML = updateIntervalP;
-    // cell2.innerHTML = 300;
-    // cell3.innerHTML = 500;
-    // cell4.innerHTML = 600;
-    // cell5.innerHTML = 800;
+    cell5.innerHTML = "";
 }
 
 function exportExcel() {
