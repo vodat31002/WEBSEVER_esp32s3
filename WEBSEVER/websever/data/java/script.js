@@ -686,7 +686,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (this.readyState == 4 && this.status == 200) {
         var x = (new Date()).getTime(),
         y = parseFloat(this.responseText);
-        
+
         if (chart.series[0].data.length > 40) {
           chart.series[0].addPoint([x, y], true, true, true);
         } else {
@@ -737,7 +737,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  //let rowNumb = 1;
+  let rowNumb = 1;
   document.getElementById("addRows").addEventListener("click", function () {
     const table = document.getElementById("responsive-table").getElementsByTagName('tbody')[0];
     const newRow = table.insertRow();
@@ -1258,9 +1258,9 @@ function startUpdatingCharts() {
   if (!updateIntervalT) {
     updateIntervalT = setInterval(function () { requestData("/torque", chartT); }, 300);
   }
-  if (!updateIntervalP) {
-    updateIntervalP = setInterval(function () { requestData("/power", chartP); }, 300);
-  }
+  // if (!updateIntervalP) {
+  //   updateIntervalP = setInterval(function () { requestData("/power", chartP); }, 300);
+  // }
   if (!updateIntervalE) {
     updateIntervalE = setInterval(function () { requestData("/encoder", chartE); }, 300);
   }
@@ -1315,6 +1315,10 @@ function addTableRow() {
     // updateIntervalT for torque
     // updateIntervalP for power 
     // updateIntervalE for encoder
+    console.log("A: " , updateIntervalE)
+    console.log("B: " , updateIntervalD)
+    console.log("C: " , updateIntervalT)
+    console.log("D: " , updateIntervalP)
     cell1.innerHTML = Math.floor(Date.now() / 1000);
     cell2.innerHTML = updateIntervalE;
     cell3.innerHTML = updateIntervalD;
