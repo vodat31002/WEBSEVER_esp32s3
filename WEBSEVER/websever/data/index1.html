@@ -73,6 +73,23 @@
             font-weight: bold;
           }
         }
+
+        #status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+        }
     </style>
     
     <body>
@@ -302,6 +319,7 @@
                                 <button id="stopButton" class="home-filter__btn btn">Stop</button>
                                 <button id="resetButton" class="home-filter__btn btn">Reset</button>
                                 <button id="exportButton" class="home-filter__btn btn">Export</button>
+                                <button id="addRows" class="home-filter__btn btn">Add Rows</button>
                                 <div class="home-filter__page">
                                     <span class="home-filter__page-num">
                                         <span class="home-filter__page-current">1</span>/3
@@ -345,7 +363,8 @@
                             </div>
 
                             <div class="table-wrapper">
-                                <table class="responsive-table">
+                                <div id="status"></div>
+                                <table id="responsive-table" class="responsive-table">
                                   <thead>
                                     <tr class="table-header">
                                       <th>TIME</th>

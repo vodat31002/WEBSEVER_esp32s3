@@ -1,55 +1,55 @@
-  /*=======================================================================*/
+/*=======================================================================*/
 /*Header*/
 /*=======================================================================*/
 
 /*<!-- Menu item -->*/
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const buttons = document.querySelectorAll(".header__menu-iteam-stop");
   const notifyItems = document.querySelectorAll(".header__notify-item");
 
-  buttons.forEach(function(button) {
-      button.addEventListener("click", function() {
-          const itemInfo = button.closest(".header__menu-iteam-info");
-          const stateSpan = itemInfo.querySelector(".header__menu-iteam-state");
-          const stateIcon = itemInfo.querySelector(".header__menu-iteam-icon-state");
-          const programName = itemInfo.querySelector(".header__menu-iteam-name").textContent;
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const itemInfo = button.closest(".header__menu-iteam-info");
+      const stateSpan = itemInfo.querySelector(".header__menu-iteam-state");
+      const stateIcon = itemInfo.querySelector(".header__menu-iteam-icon-state");
+      const programName = itemInfo.querySelector(".header__menu-iteam-name").textContent;
 
-          if (stateSpan.textContent === "Active") {
-              setTimeout(function() {
-                  stateSpan.textContent = "Inactive";
-                  stateSpan.style.color = "#949494";
-                  stateIcon.style.color = "#949494";
-                  button.textContent = "Start";
-                  // Update notification status
-                  notifyItems.forEach(function(item) {
-                      const notifyName = item.querySelector(".header__notify-name").textContent;
-                      if (notifyName === programName) {
-                          item.querySelector(".header__notify-description").textContent = "Inactive";
-                      }
-                  });
-              }, 0);
-          } else {
-              setTimeout(function() {
-                  stateSpan.textContent = "Active";
-                  stateSpan.style.color = "#4e8bf4";
-                  stateIcon.style.color = "green";
-                  button.textContent = "Stop";
-                  // Update notification status
-                  notifyItems.forEach(function(item) {
-                      const notifyName = item.querySelector(".header__notify-name").textContent;
-                      if (notifyName === programName) {
-                          item.querySelector(".header__notify-description").textContent = "Active";
-                      }
-                  });
-              }, 0);
-          }
-      });
+      if (stateSpan.textContent === "Active") {
+        setTimeout(function () {
+          stateSpan.textContent = "Inactive";
+          stateSpan.style.color = "#949494";
+          stateIcon.style.color = "#949494";
+          button.textContent = "Start";
+          // Update notification status
+          notifyItems.forEach(function (item) {
+            const notifyName = item.querySelector(".header__notify-name").textContent;
+            if (notifyName === programName) {
+              item.querySelector(".header__notify-description").textContent = "Inactive";
+            }
+          });
+        }, 0);
+      } else {
+        setTimeout(function () {
+          stateSpan.textContent = "Active";
+          stateSpan.style.color = "#4e8bf4";
+          stateIcon.style.color = "green";
+          button.textContent = "Stop";
+          // Update notification status
+          notifyItems.forEach(function (item) {
+            const notifyName = item.querySelector(".header__notify-name").textContent;
+            if (notifyName === programName) {
+              item.querySelector(".header__notify-description").textContent = "Active";
+            }
+          });
+        }, 0);
+      }
+    });
   });
 });
 
 /* Check Program */
 /* Check Program */
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Lưu trạng thái chương trình đã chọn
   var selectedProgramIndex = null;
 
@@ -64,54 +64,54 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Hàm thay đổi background và màu chữ khi click vào chương trình
   function changeBackgroundAndTextColor(event) {
-      // Lấy chỉ mục của chương trình được click
-      var clickedProgramIndex = Array.from(programLinks).indexOf(event.target.closest(".header__menu-iteam"));
+    // Lấy chỉ mục của chương trình được click
+    var clickedProgramIndex = Array.from(programLinks).indexOf(event.target.closest(".header__menu-iteam"));
 
-      // Kiểm tra xem phần tử được click có chứa nút "STOP" hoặc "START" không
-      var isStopStartButton = event.target.classList.contains("header__menu-iteam-stop");
+    // Kiểm tra xem phần tử được click có chứa nút "STOP" hoặc "START" không
+    var isStopStartButton = event.target.classList.contains("header__menu-iteam-stop");
 
-      // Kiểm tra nếu không phải là nút "STOP" hoặc "START"
-      if (!isStopStartButton) {
-          // Kiểm tra nếu chương trình hiện tại đã được chọn
-          if (clickedProgramIndex === selectedProgramIndex) {
-              // Hủy chọn chương trình
-              programLinks[clickedProgramIndex].style.background = "";
-              selectedProgramIndex = null;
-          } else {
-              // Hủy chọn chương trình hiện tại nếu có
-              if (selectedProgramIndex !== null) {
-                  programLinks[selectedProgramIndex].style.background = "";
-              }
-              // Chọn chương trình mới
-              programLinks[clickedProgramIndex].style.background = "linear-gradient(0, #42d3ec, #fff)";
-              selectedProgramIndex = clickedProgramIndex;
-          }
+    // Kiểm tra nếu không phải là nút "STOP" hoặc "START"
+    if (!isStopStartButton) {
+      // Kiểm tra nếu chương trình hiện tại đã được chọn
+      if (clickedProgramIndex === selectedProgramIndex) {
+        // Hủy chọn chương trình
+        programLinks[clickedProgramIndex].style.background = "";
+        selectedProgramIndex = null;
+      } else {
+        // Hủy chọn chương trình hiện tại nếu có
+        if (selectedProgramIndex !== null) {
+          programLinks[selectedProgramIndex].style.background = "";
+        }
+        // Chọn chương trình mới
+        programLinks[clickedProgramIndex].style.background = "linear-gradient(0, #42d3ec, #fff)";
+        selectedProgramIndex = clickedProgramIndex;
       }
+    }
   }
 
   // Gán sự kiện click cho từng chương trình
-  programLinks.forEach(function(link) {
-      link.addEventListener("click", changeBackgroundAndTextColor);
+  programLinks.forEach(function (link) {
+    link.addEventListener("click", changeBackgroundAndTextColor);
   });
 
   // Hàm xử lý khi click vào nút Check program
   function checkProgram() {
-      // Kiểm tra nếu có chương trình được chọn
-      if (selectedProgramIndex !== null) {
-          // Điều hướng đến chương trình đó
-          window.location.href = "#" + (selectedProgramIndex + 1);
-          // Đồng bộ màu chữ trong category sau khi kiểm tra chương trình
-          buttonsCategory.forEach(function(btn) {
-              btn.style.color = "";
-          });
-          buttonsCategory[selectedProgramIndex].style.color = "#4e8bf4";
-          // Cập nhật số trang dựa trên chương trình đã chọn
-          var currentPage = selectedProgramIndex + 1;
-          updatePageNumber(currentPage);
-      } else {
-          // Hiển thị thông báo nếu không có chương trình nào được chọn
-          alert("Vui lòng chọn một chương trình trước khi kiểm tra!");
-      }
+    // Kiểm tra nếu có chương trình được chọn
+    if (selectedProgramIndex !== null) {
+      // Điều hướng đến chương trình đó
+      window.location.href = "#" + (selectedProgramIndex + 1);
+      // Đồng bộ màu chữ trong category sau khi kiểm tra chương trình
+      buttonsCategory.forEach(function (btn) {
+        btn.style.color = "";
+      });
+      buttonsCategory[selectedProgramIndex].style.color = "#4e8bf4";
+      // Cập nhật số trang dựa trên chương trình đã chọn
+      var currentPage = selectedProgramIndex + 1;
+      updatePageNumber(currentPage);
+    } else {
+      // Hiển thị thông báo nếu không có chương trình nào được chọn
+      alert("Vui lòng chọn một chương trình trước khi kiểm tra!");
+    }
   }
 
   // Gán sự kiện click cho nút Check program
@@ -121,20 +121,20 @@ document.addEventListener("DOMContentLoaded", function() {
   // buttonsCategory[0].style.color = "#4e8bf4";
 
   // Gán sự kiện click cho từng chương trình trong category
-  buttonsCategory.forEach(function(button, index) {
-      button.addEventListener("click", function() {
-          // Loại bỏ màu xanh khỏi tất cả các chương trình trong category
-          buttonsCategory.forEach(function(btn) {
-              btn.style.color = "";
-          });
-          // Đặt màu xanh cho chương trình được chọn trong category
-          button.style.color = "#4e8bf4";
-          // Đồng bộ màu nền và màu chữ khi click chương trình từ category
-          programLinks[index].click();
-          // Cập nhật số trang dựa trên chương trình đã chọn
-          var currentPage = index + 1;
-          updatePageNumber(currentPage);
+  buttonsCategory.forEach(function (button, index) {
+    button.addEventListener("click", function () {
+      // Loại bỏ màu xanh khỏi tất cả các chương trình trong category
+      buttonsCategory.forEach(function (btn) {
+        btn.style.color = "";
       });
+      // Đặt màu xanh cho chương trình được chọn trong category
+      button.style.color = "#4e8bf4";
+      // Đồng bộ màu nền và màu chữ khi click chương trình từ category
+      programLinks[index].click();
+      // Cập nhật số trang dựa trên chương trình đã chọn
+      var currentPage = index + 1;
+      updatePageNumber(currentPage);
+    });
   });
 
   // Xử lý số trang
@@ -153,403 +153,407 @@ document.addEventListener("DOMContentLoaded", function() {
   prevPageButton.addEventListener("click", () => currentPage > 1 && updatePage(-1));
   nextPageButton.addEventListener("click", () => currentPage < maxPage && updatePage(1));
 
-  prevPageButtonPagination.addEventListener("click", function(event) {
-      event.preventDefault();
-      if (currentPage > 1) updatePage(-1);
+  prevPageButtonPagination.addEventListener("click", function (event) {
+    event.preventDefault();
+    if (currentPage > 1) updatePage(-1);
   });
 
-  nextPageButtonPagination.addEventListener("click", function(event) {
-      event.preventDefault();
-      if (currentPage < maxPage) updatePage(1);
+  nextPageButtonPagination.addEventListener("click", function (event) {
+    event.preventDefault();
+    if (currentPage < maxPage) updatePage(1);
   });
 
-  paginationItems.forEach(function(item, index) {
-      item.addEventListener("click", function() {
-          if (index !== 0 && index !== paginationItems.length - 1) {
-              currentPage = index;
-              updatePageNumber(currentPage);
-              // Đồng bộ chương trình được chọn khi chuyển trang
-              var selectedProgramIndex = currentPage - 1;
-              buttonsCategory.forEach(function(btn, idx) {
-                  btn.style.color = idx === selectedProgramIndex ? "#4e8bf4" : "";
-              });
-          }
-      });
+  paginationItems.forEach(function (item, index) {
+    item.addEventListener("click", function () {
+      if (index !== 0 && index !== paginationItems.length - 1) {
+        currentPage = index;
+        updatePageNumber(currentPage);
+        // Đồng bộ chương trình được chọn khi chuyển trang
+        var selectedProgramIndex = currentPage - 1;
+        buttonsCategory.forEach(function (btn, idx) {
+          btn.style.color = idx === selectedProgramIndex ? "#4e8bf4" : "";
+        });
+      }
+    });
   });
 
   function updatePage(delta) {
-      currentPage += delta;
-      updatePageNumber(currentPage);
-      // Đồng bộ chương trình được chọn khi chuyển trang
-      var selectedProgramIndex = currentPage - 1;
-      buttonsCategory.forEach(function(btn, idx) {
-          btn.style.color = idx === selectedProgramIndex ? "#4e8bf4" : "";
-      });
-      window.location.href = "index" + currentPage + ".html";
+    currentPage += delta;
+    updatePageNumber(currentPage);
+    // Đồng bộ chương trình được chọn khi chuyển trang
+    var selectedProgramIndex = currentPage - 1;
+    buttonsCategory.forEach(function (btn, idx) {
+      btn.style.color = idx === selectedProgramIndex ? "#4e8bf4" : "";
+    });
+    window.location.href = "index" + currentPage + ".html";
   }
 
   function updatePageNumber(currentPage) {
-      currentPageElement.textContent = currentPage;
-      currentPageElement.style.color = "blue"; // Đặt màu xanh cho số trang
-      prevPageButton.classList.toggle("home-filter__page-btn--disabled", currentPage === 1);
-      nextPageButton.classList.toggle("home-filter__page-btn--disabled", currentPage === maxPage);
+    currentPageElement.textContent = currentPage;
+    currentPageElement.style.color = "blue"; // Đặt màu xanh cho số trang
+    prevPageButton.classList.toggle("home-filter__page-btn--disabled", currentPage === 1);
+    nextPageButton.classList.toggle("home-filter__page-btn--disabled", currentPage === maxPage);
 
-      // Cập nhật địa chỉ href cho các thẻ <a> dựa trên trang hiện tại (xem xét)
-      prevPageButton.href = currentPage > 1 ? `#${currentPage}` : "#1";
-      nextPageButton.href = currentPage < maxPage ? `#${currentPage}` : `#${maxPage}`; // Cập nhật địa chỉ của trang cuối cùng
+    // Cập nhật địa chỉ href cho các thẻ <a> dựa trên trang hiện tại (xem xét)
+    prevPageButton.href = currentPage > 1 ? `#${currentPage}` : "#1";
+    nextPageButton.href = currentPage < maxPage ? `#${currentPage}` : `#${maxPage}`; // Cập nhật địa chỉ của trang cuối cùng
 
-      // Lưu trang hiện tại vào localStorage
-      localStorage.setItem("currentPage", currentPage.toString());
+    // Lưu trang hiện tại vào localStorage
+    localStorage.setItem("currentPage", currentPage.toString());
 
-      paginationItems.forEach(function(item, index) {
-          const isActive = index === currentPage;
-          item.classList.toggle("pagination-item--active", isActive);
-          item.querySelector(".pagination-item__link").classList.toggle("active", isActive);
-      });
+    paginationItems.forEach(function (item, index) {
+      const isActive = index === currentPage;
+      item.classList.toggle("pagination-item--active", isActive);
+      item.querySelector(".pagination-item__link").classList.toggle("active", isActive);
+    });
   }
-    
-    /* Value input X,Y,Z */
-    const inputs = document.querySelectorAll('input[type="range"], input[type="number"]');
-    const coordinates = {
-        x: {
-            input: document.getElementById('x-value'),
-            slider: document.getElementById('x-position'),
-            span: document.getElementById('x-coordinate')
-        },
-        y: {
-            input: document.getElementById('y-value'),
-            slider: document.getElementById('y-position'),
-            span: document.getElementById('y-coordinate')
-        },
-        z: {
-            input: document.getElementById('z-value'),
-            slider: document.getElementById('z-position'),
-            span: document.getElementById('z-coordinate')
-        }
-    };
 
-    // Add 'input' and 'change' event listeners to each input
-    inputs.forEach(input => {
-        input.addEventListener('input', function() {
-            enforceMaxValue(this);
-            updateCoordinatesFromInput(this);
-        });
-        input.addEventListener('change', function() {
-            enforceMaxValue(this);
-            updateCoordinatesFromInput(this);
-        });
+  /* Value input X,Y,Z */
+  const inputs = document.querySelectorAll('input[type="range"], input[type="number"]');
+  const coordinates = {
+    x: {
+      input: document.getElementById('x-value'),
+      slider: document.getElementById('x-position'),
+      span: document.getElementById('x-coordinate')
+    },
+    y: {
+      input: document.getElementById('y-value'),
+      slider: document.getElementById('y-position'),
+      span: document.getElementById('y-coordinate')
+    },
+    z: {
+      input: document.getElementById('z-value'),
+      slider: document.getElementById('z-position'),
+      span: document.getElementById('z-coordinate')
+    }
+  };
+
+  // Add 'input' and 'change' event listeners to each input
+  inputs.forEach(input => {
+    input.addEventListener('input', function () {
+      enforceMaxValue(this);
+      updateCoordinatesFromInput(this);
     });
+    input.addEventListener('change', function () {
+      enforceMaxValue(this);
+      updateCoordinatesFromInput(this);
+    });
+  });
 
-    // Function to enforce max value on input change
-    function enforceMaxValue(input) {
-        let value = parseFloat(input.value);
-        const max = parseFloat(input.max);
+  // Function to enforce max value on input change
+  function enforceMaxValue(input) {
+    let value = parseFloat(input.value);
+    const max = parseFloat(input.max);
 
-        if (value > max) {
-            input.value = max;
-        }
+    if (value > max) {
+      input.value = max;
+    }
+  }
+
+  // Function to update coordinates from input (xem xét)
+  function updateCoordinatesFromInput(input) {
+    const id = input.id.replace('-value', '-position');
+    let value = input.value;
+
+    // If the input is empty, set the value to 0
+    if (value === '') {
+      value = 0;
     }
 
-    // Function to update coordinates from input (xem xét)
-    function updateCoordinatesFromInput(input) {
-        const id = input.id.replace('-value', '-position');
-        let value = input.value;
+    const axis = id.charAt(0); // X, Y, or Z
 
-        // If the input is empty, set the value to 0
-        if (value === '') {
-            value = 0;
-        }
+    // Update the corresponding slider value
+    coordinates[axis].slider.value = value;
 
-        const axis = id.charAt(0); // X, Y, or Z
+    // Update coordinates display
+    updateCoordinates();
+  }
 
-        // Update the corresponding slider value
-        coordinates[axis].slider.value = value;
+  // Function to update coordinates from slider
+  function updateCoordinatesFromSlider(axis) {
+    const value = coordinates[axis].slider.value;
 
-        // Update coordinates display
-        updateCoordinates();
-    }
+    // Update the corresponding input value
+    coordinates[axis].input.value = value;
 
-    // Function to update coordinates from slider
-    function updateCoordinatesFromSlider(axis) {
-        const value = coordinates[axis].slider.value;
+    // Update coordinates display
+    updateCoordinates();
+  }
 
-        // Update the corresponding input value
-        coordinates[axis].input.value = value;
-
-        // Update coordinates display
-        updateCoordinates();
-    }
-
-    // Function to update coordinates display
-    function updateCoordinates() {
-        for (let axis in coordinates) {
-            let value = coordinates[axis].input.value;
-
-            // If the input is empty, set the value to 0
-            if (value === '') {
-                value = 0;
-            }
-
-            coordinates[axis].span.textContent = `Tọa độ ${axis.toUpperCase()} là ${value}.`;
-        }
-    }
-
-    // Add 'input' event listener to sliders
+  // Function to update coordinates display
+  function updateCoordinates() {
     for (let axis in coordinates) {
-        coordinates[axis].slider.addEventListener('input', function() {
-            updateCoordinatesFromSlider(axis);
+      let value = coordinates[axis].input.value;
+
+      // If the input is empty, set the value to 0
+      if (value === '') {
+        value = 0;
+      }
+
+      coordinates[axis].span.textContent = `Tọa độ ${axis.toUpperCase()} là ${value}.`;
+    }
+  }
+
+  // Add 'input' event listener to sliders
+  if (coordinates != null){
+    for (let axis in coordinates) {
+      if (coordinates[axis].slider != null) {
+        coordinates[axis].slider.addEventListener('input', function () {
+          updateCoordinatesFromSlider(axis);
         });
+      } 
     }
-    document.getElementById("DrillButton").addEventListener("click", function() {
-      this.classList.toggle("off");
-    });
-  
-    
+    if (document.getElementById("DrillButton") != null){
+      document.getElementById("DrillButton").addEventListener("click", function () {
+        this.classList.toggle("off");
+      });
+    }
+  }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Gauge for torque
-    var chartTorque = JSC.chart('chartDiv2', {
-      title: {
-        label: {
-          text: 'Momen',
-          style: {
-            fontSize: 15,
-            fontWeight: 'bold',
-            color: '#4e8bf4'
-          }
-        },
-        position: 'center',
-        align: 'center'
-      },
-      debug: true,
-      type: 'gauge',
-      animation_duration: 1000,
-      legend_visible: false,
-      xAxis: { spacingPercentage: 0.25 },
-      yAxis: {
-        defaultTick: {
-          padding: -5,
-          label_style_fontSize: '14px'
-        },
-        line: {
-          width: 9,
-          color: 'smartPalette',
-          breaks_gap: 0.06
-        },
-        scale_range: [0, 12]
-      },
-      palette: {
-        pointValue: '{%value/12}',
-        colors: ['LightBlue', 'RoyalBlue', 'DarkBlue']
-      },
-      defaultTooltip_enabled: false,
-      defaultSeries: {
-        angle: { sweep: 180 },
-        shape: {
-          innerSize: '70%',
-          label: {
-            text: '<span color="%color">{%sum:n1}</span><br/><span color="#4e8bf4" fontSize="20px" fontWeight="bold">N/m</span>',
-            style_fontSize: '46px',
-            verticalAlign: 'middle'
-          }
+document.addEventListener("DOMContentLoaded", function () {
+  // Gauge for torque
+  var chartTorque = JSC.chart('chartDiv2', {
+    title: {
+      label: {
+        text: 'Momen',
+        style: {
+          fontSize: 15,
+          fontWeight: 'bold',
+          color: '#4e8bf4'
         }
       },
-      series: [{
-        type: 'column roundcaps',
-        points: [{ id: '1', x: 'torque', y: 0 }]
-      }]
-    });
-  
-    // Gauge for position
-    var chartPosition = JSC.chart('chartDiv1', {
-      title: {
+      position: 'center',
+      align: 'center'
+    },
+    debug: true,
+    type: 'gauge',
+    animation_duration: 1000,
+    legend_visible: false,
+    xAxis: { spacingPercentage: 0.25 },
+    yAxis: {
+      defaultTick: {
+        padding: -5,
+        label_style_fontSize: '14px'
+      },
+      line: {
+        width: 9,
+        color: 'smartPalette',
+        breaks_gap: 0.06
+      },
+      scale_range: [0, 12]
+    },
+    palette: {
+      pointValue: '{%value/12}',
+      colors: ['LightBlue', 'RoyalBlue', 'DarkBlue']
+    },
+    defaultTooltip_enabled: false,
+    defaultSeries: {
+      angle: { sweep: 180 },
+      shape: {
+        innerSize: '70%',
         label: {
-          text: 'Position',
-          style: {
-            fontSize: 15,
-            fontWeight: 'bold',
-            color: '#4e8bf4'
-          }
-        },
-        position: 'center',
-        align: 'center'
-      },
-      debug: true,
-      type: 'gauge',
-      animation_duration: 1000,
-      legend_visible: false,
-      xAxis: { spacingPercentage: 0.25 },
-      yAxis: {
-        defaultTick: {
-          padding: -5,
-          label_style_fontSize: '14px'
-        },
-        line: {
-          width: 6,
-          color: 'smartPalette',
-          breaks_gap: 0.06
-        },
-        scale_range: [0, 320]
-      },
-      palette: {
-        pointValue: '{%value/20}',
-        colors: ['LightBlue', 'RoyalBlue', 'DarkBlue']
-      },
-      defaultTooltip_enabled: false,
-      defaultSeries: {
-        angle: { sweep: 180 },
-        shape: {
-          innerSize: '70%',
-          label: {
-            text: '<span color="%color">{%sum:n1}</span><br/><span color="#4e8bf4" fontSize="20px" fontWeight="bold">CM</span>',
-            style_fontSize: '46px',
-            verticalAlign: 'middle'
-          }
+          text: '<span color="%color">{%sum:n1}</span><br/><span color="#4e8bf4" fontSize="20px" fontWeight="bold">N/m</span>',
+          style_fontSize: '46px',
+          verticalAlign: 'middle'
+        }
+      }
+    },
+    series: [{
+      type: 'column roundcaps',
+      points: [{ id: '1', x: 'torque', y: 0 }]
+    }]
+  });
+
+  // Gauge for position
+  var chartPosition = JSC.chart('chartDiv1', {
+    title: {
+      label: {
+        text: 'Position',
+        style: {
+          fontSize: 15,
+          fontWeight: 'bold',
+          color: '#4e8bf4'
         }
       },
-      series: [{
-        type: 'column roundcaps',
-        points: [{ id: '1', x: 'distance', y: 0 }]
-      }]
-    });
-
-    // Gauge for encoder
-    var chartEncoder = JSC.chart('chartDiv3', {
-      title: {
+      position: 'center',
+      align: 'center'
+    },
+    debug: true,
+    type: 'gauge',
+    animation_duration: 1000,
+    legend_visible: false,
+    xAxis: { spacingPercentage: 0.25 },
+    yAxis: {
+      defaultTick: {
+        padding: -5,
+        label_style_fontSize: '14px'
+      },
+      line: {
+        width: 6,
+        color: 'smartPalette',
+        breaks_gap: 0.06
+      },
+      scale_range: [0, 320]
+    },
+    palette: {
+      pointValue: '{%value/20}',
+      colors: ['LightBlue', 'RoyalBlue', 'DarkBlue']
+    },
+    defaultTooltip_enabled: false,
+    defaultSeries: {
+      angle: { sweep: 180 },
+      shape: {
+        innerSize: '70%',
         label: {
-          text: 'Speed',
-          style: {
-            fontSize: 15,
-            fontWeight: 'bold',
-            color: '#4e8bf4'
-          }
-        },
-        position: 'center',
-        align: 'center'
-      },
-      debug: true,
-      type: 'gauge',
-      animation_duration: 1000,
-      legend_visible: false,
-      xAxis: { spacingPercentage: 0.25 },
-      yAxis: {
-        defaultTick: {
-          padding: -5,
-          label_style_fontSize: '14px'
-        },
-        line: {
-          width: 9,
-          color: 'smartPalette',
-          breaks_gap: 0.06
-        },
-        scale_range: [0, 200]
-      },
-      palette: {
-        pointValue: '{%value/200}',
-        colors: ['LightBlue', 'RoyalBlue', 'DarkBlue']
-      },
-      defaultTooltip_enabled: false,
-      defaultSeries: {
-        angle: { sweep: 180 },
-        shape: {
-          innerSize: '70%',
-          label: {
-            text: '<span color="%color">{%sum:n1}</span><br/><span color="#4e8bf4" fontSize="20px" fontWeight="bold">RPM</span>',
-            style_fontSize: '46px',
-            verticalAlign: 'middle'
-          }
+          text: '<span color="%color">{%sum:n1}</span><br/><span color="#4e8bf4" fontSize="20px" fontWeight="bold">CM</span>',
+          style_fontSize: '46px',
+          verticalAlign: 'middle'
+        }
+      }
+    },
+    series: [{
+      type: 'column roundcaps',
+      points: [{ id: '1', x: 'distance', y: 0 }]
+    }]
+  });
+
+  // Gauge for encoder
+  var chartEncoder = JSC.chart('chartDiv3', {
+    title: {
+      label: {
+        text: 'Speed',
+        style: {
+          fontSize: 15,
+          fontWeight: 'bold',
+          color: '#4e8bf4'
         }
       },
-      series: [{
-        type: 'column roundcaps',
-        points: [{ id: '1', x: 'encoder', y: 0 }]
-      }]
-    });
-  
-    function requestData(url, chart, pointId) {
-      fetch(url)
-        .then(response => response.text()) // Change to text() to parse plain text
-        .then(data => {
-          chart.series(0).options({
-            points: [{ id: pointId, x: pointId, y: parseFloat(data) }] // Convert string to float
-          });
-        })
-        .catch(error => console.error('Error fetching data:', error));
-    }
-
-    // Gauge for power
-    var chartPower = JSC.chart('chartDiv', {
-      title: {
+      position: 'center',
+      align: 'center'
+    },
+    debug: true,
+    type: 'gauge',
+    animation_duration: 1000,
+    legend_visible: false,
+    xAxis: { spacingPercentage: 0.25 },
+    yAxis: {
+      defaultTick: {
+        padding: -5,
+        label_style_fontSize: '14px'
+      },
+      line: {
+        width: 9,
+        color: 'smartPalette',
+        breaks_gap: 0.06
+      },
+      scale_range: [0, 200]
+    },
+    palette: {
+      pointValue: '{%value/200}',
+      colors: ['LightBlue', 'RoyalBlue', 'DarkBlue']
+    },
+    defaultTooltip_enabled: false,
+    defaultSeries: {
+      angle: { sweep: 180 },
+      shape: {
+        innerSize: '70%',
         label: {
-          text: 'Power',
-          style: {
-            fontSize: 15,
-            fontWeight: 'bold',
-            color: '#4e8bf4'
-          }
-        },
-        position: 'center',
-        align: 'center'
-      },
-      debug: true,
-      type: 'gauge',
-      animation_duration: 1000,
-      legend_visible: false,
-      xAxis: { spacingPercentage: 0.25 },
-      yAxis: {
-        defaultTick: {
-          padding: -5,
-          label_style_fontSize: '14px'
-        },
-        line: {
-          width: 9,
-          color: 'smartPalette',
-          breaks_gap: 0.06
-        },
-        scale_range: [0, 200]
-      },
-      palette: {
-        pointValue: '{%value/200}',
-        colors: ['LightBlue', 'RoyalBlue', 'DarkBlue']
-      },
-      defaultTooltip_enabled: false,
-      defaultSeries: {
-        angle: { sweep: 180 },
-        shape: {
-          innerSize: '70%',
-          label: {
-            text: '<span color="%color">{%sum:n1}</span><br/><span color="#4e8bf4" fontSize="20px" fontWeight="bold">W</span>',
-            style_fontSize: '46px',
-            verticalAlign: 'middle'
-          }
+          text: '<span color="%color">{%sum:n1}</span><br/><span color="#4e8bf4" fontSize="20px" fontWeight="bold">RPM</span>',
+          style_fontSize: '46px',
+          verticalAlign: 'middle'
+        }
+      }
+    },
+    series: [{
+      type: 'column roundcaps',
+      points: [{ id: '1', x: 'encoder', y: 0 }]
+    }]
+  });
+
+  function requestData(url, chart, pointId) {
+    fetch(url)
+      .then(response => response.text()) // Change to text() to parse plain text
+      .then(data => {
+        chart.series(0).options({
+          points: [{ id: pointId, x: pointId, y: parseFloat(data) }] // Convert string to float
+        });
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }
+
+  // Gauge for power
+  var chartPower = JSC.chart('chartDiv', {
+    title: {
+      label: {
+        text: 'Power',
+        style: {
+          fontSize: 15,
+          fontWeight: 'bold',
+          color: '#4e8bf4'
         }
       },
-      series: [{
-        type: 'column roundcaps',
-        points: [{ id: '1', x: 'power', y: 0 }]
-      }]
-    });
-  
-    // Set up intervals to fetch data
-    setInterval(function() {
-      requestData("/distance", chartPosition, 'distance');
-    }, 300);
-  
-    setInterval(function() {
-      requestData("/torque", chartTorque, 'torque');
-    }, 300);
+      position: 'center',
+      align: 'center'
+    },
+    debug: true,
+    type: 'gauge',
+    animation_duration: 1000,
+    legend_visible: false,
+    xAxis: { spacingPercentage: 0.25 },
+    yAxis: {
+      defaultTick: {
+        padding: -5,
+        label_style_fontSize: '14px'
+      },
+      line: {
+        width: 9,
+        color: 'smartPalette',
+        breaks_gap: 0.06
+      },
+      scale_range: [0, 200]
+    },
+    palette: {
+      pointValue: '{%value/200}',
+      colors: ['LightBlue', 'RoyalBlue', 'DarkBlue']
+    },
+    defaultTooltip_enabled: false,
+    defaultSeries: {
+      angle: { sweep: 180 },
+      shape: {
+        innerSize: '70%',
+        label: {
+          text: '<span color="%color">{%sum:n1}</span><br/><span color="#4e8bf4" fontSize="20px" fontWeight="bold">W</span>',
+          style_fontSize: '46px',
+          verticalAlign: 'middle'
+        }
+      }
+    },
+    series: [{
+      type: 'column roundcaps',
+      points: [{ id: '1', x: 'power', y: 0 }]
+    }]
+  });
 
-    setInterval(function() {
-      requestData("/encoder", chartEncoder, 'encoder');
-    }, 300);
+  // Set up intervals to fetch data
+  setInterval(function () {
+    requestData("/distance", chartPosition, 'distance');
+  }, 300);
 
-    setInterval(function() {
-      requestData("/power", chartPower, 'power');
-    }, 300);
-  
+  setInterval(function () {
+    requestData("/torque", chartTorque, 'torque');
+  }, 300);
+
+  setInterval(function () {
+    requestData("/encoder", chartEncoder, 'encoder');
+  }, 300);
+
+  setInterval(function () {
+    requestData("/power", chartPower, 'power');
+  }, 300);
+
 });
-  
+
 
 
 /*=======================================================================*/
@@ -557,140 +561,140 @@ document.addEventListener("DOMContentLoaded", function() {
 /*=======================================================================*/
 /* Initialize charts */
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Postion chart
   var chartD = new Highcharts.Chart({
-      chart: { renderTo: 'chart-position' },
-      title: { text: 'Position' },
-      series: [{
-          showInLegend: false,
-          data: []
-      }],
-      plotOptions: {
-          line: { 
-              animation: false,
-              dataLabels: { enabled: true }
-          },
-          series: { color: '#059e8a' } // Màu cho line
+    chart: { renderTo: 'chart-position' },
+    title: { text: 'Position' },
+    series: [{
+      showInLegend: false,
+      data: []
+    }],
+    plotOptions: {
+      line: {
+        animation: false,
+        dataLabels: { enabled: true }
       },
-      xAxis: { 
-          type: 'datetime',
-          dateTimeLabelFormats: { second: '%H:%M:%S' }
-      },
-      yAxis: {
-          title: { text: 'Position (cm)' }
-      },
-      credits: { enabled: false }
+      series: { color: '#059e8a' } // Màu cho line
+    },
+    xAxis: {
+      type: 'datetime',
+      dateTimeLabelFormats: { second: '%H:%M:%S' }
+    },
+    yAxis: {
+      title: { text: 'Position (cm)' }
+    },
+    credits: { enabled: false }
   });
 
   // Moment chart
   var chartT = new Highcharts.Chart({
-      chart: { renderTo: 'chart-momen' },
-      title: { text: 'Momen' },
-      series: [{
-          showInLegend: false,
-          data: []
-      }],
-      plotOptions: {
-          line: { 
-              animation: false,
-              dataLabels: { enabled: true }
-          },
-          series: { color: '#1E90FF' } // Màu cho line
+    chart: { renderTo: 'chart-momen' },
+    title: { text: 'Momen' },
+    series: [{
+      showInLegend: false,
+      data: []
+    }],
+    plotOptions: {
+      line: {
+        animation: false,
+        dataLabels: { enabled: true }
       },
-      xAxis: { 
-          type: 'datetime',
-          dateTimeLabelFormats: { second: '%H:%M:%S' }
-      },
-      yAxis: {
-          title: { text: 'Momen (N.m)' }
-      },
-      credits: { enabled: false }
+      series: { color: '#1E90FF' } // Màu cho line
+    },
+    xAxis: {
+      type: 'datetime',
+      dateTimeLabelFormats: { second: '%H:%M:%S' }
+    },
+    yAxis: {
+      title: { text: 'Momen (N.m)' }
+    },
+    credits: { enabled: false }
   });
 
-  
+
   // Power chart
   var chartP = new Highcharts.Chart({
     chart: { renderTo: 'chart-power' },
     title: { text: 'Power' },
     series: [{
-        showInLegend: false,
-        data: []
+      showInLegend: false,
+      data: []
     }],
     plotOptions: {
-        line: { 
-            animation: false,
-            dataLabels: { enabled: true }
-        },
-        series: { color: '#FF6347' } // Màu cho công suất
+      line: {
+        animation: false,
+        dataLabels: { enabled: true }
+      },
+      series: { color: '#FF6347' } // Màu cho công suất
     },
-    xAxis: { 
-        type: 'datetime',
-        dateTimeLabelFormats: { second: '%H:%M:%S' }
+    xAxis: {
+      type: 'datetime',
+      dateTimeLabelFormats: { second: '%H:%M:%S' }
     },
     yAxis: {
-        title: { text: 'Power (W)' }
+      title: { text: 'Power (W)' }
     },
     credits: { enabled: false }
   });
 
   // speed chart
   var chartE = new Highcharts.Chart({
-      chart: { renderTo: 'chart-speed' },
-      title: { text: 'Speed' },
-      series: [{
-          showInLegend: false,
-          data: []
-      }],
-      plotOptions: {
-          line: { 
-              animation: false,
-              dataLabels: { enabled: true }
-          },
-          series: { color: '#FF4500' } // Màu cho nhiệt độ
+    chart: { renderTo: 'chart-speed' },
+    title: { text: 'Speed' },
+    series: [{
+      showInLegend: false,
+      data: []
+    }],
+    plotOptions: {
+      line: {
+        animation: false,
+        dataLabels: { enabled: true }
       },
-      xAxis: { 
-          type: 'datetime',
-          dateTimeLabelFormats: { second: '%H:%M:%S' }
-      },
-      yAxis: {
-          title: { text: 'Speed (rpm)' }
-      },
-      credits: { enabled: false }
+      series: { color: '#FF4500' } // Màu cho nhiệt độ
+    },
+    xAxis: {
+      type: 'datetime',
+      dateTimeLabelFormats: { second: '%H:%M:%S' }
+    },
+    yAxis: {
+      title: { text: 'Speed (rpm)' }
+    },
+    credits: { enabled: false }
   });
 
   // Update intervals
-  setInterval(function() {
-       requestData("/distance", chartD);
-   }, 300);
-  setInterval(function() {
-       requestData("/torque", chartT);
-   }, 300);
+  setInterval(function () {
+    requestData("/distance", chartD);
+  }, 300);
+  setInterval(function () {
+    requestData("/torque", chartT);
+  }, 300);
 
-  setInterval(function() {
-      requestData("/power", chartP);
-   }, 300);
+  setInterval(function () {
+    requestData("/power", chartP);
+  }, 300);
 
-  setInterval(function() {
-      requestData("/encoder", chartE);
-   }, 300);
+  setInterval(function () {
+    requestData("/encoder", chartE);
+  }, 300);
 
   // Function to request data
   function requestData(endpoint, chart) {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() { 
-          if (this.readyState == 4 && this.status == 200) {
-              var x = (new Date()).getTime(),
-                  y = parseFloat(this.responseText);
-              if (chart.series[0].data.length > 40) {
-                  chart.series[0].addPoint([x, y], true, true, true);
-              } else {
-                  chart.series[0].addPoint([x, y], true, false, true);
-              }
-          }
-      };
-      xhttp.open("GET", endpoint, true);
-      xhttp.send();
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var x = (new Date()).getTime(),
+          y = parseFloat(this.responseText);
+        if (chart.series[0].data.length > 40) {
+          chart.series[0].addPoint([x, y], true, true, true);
+        } else {
+          chart.series[0].addPoint([x, y], true, false, true);
+        }
+      }
+    };
+    //xhttp.open("GET", endpoint, true);
+    //xhttp.send();
   }
 });
 
@@ -701,15 +705,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const gridColumn10 = document.querySelector('.grid__column-10');
 
   mobileCategoryMenu.addEventListener('click', function () {
-      gridColumn2.classList.toggle('show');
-      gridColumn10.classList.toggle('expanded');
+    gridColumn2.classList.toggle('show');
+    gridColumn10.classList.toggle('expanded');
   });
 
   document.addEventListener('click', function (event) {
-      if (!event.target.closest('.grid__column-2') && !event.target.closest('#mobile-category-menu')) {
-          gridColumn2.classList.remove('show');
-          gridColumn10.classList.remove('expanded');
-      }
+    if (!event.target.closest('.grid__column-2') && !event.target.closest('#mobile-category-menu')) {
+      gridColumn2.classList.remove('show');
+      gridColumn10.classList.remove('expanded');
+    }
   });
 });
 
@@ -717,9 +721,9 @@ let updateIntervalD, updateIntervalT, updateIntervalP, updateIntervalE;
 let isUpdating = false;
 
 /* CÀI ĐẶT CÁC NÚT NHẤN CHO 3 CTRINH */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   let drillState = false; // false means off, true means on
-  document.getElementById("startButton").addEventListener("click", function() {
+  document.getElementById("startButton").addEventListener("click", function () {
     if (!isUpdating) {
       toggleBlue(this);
       const allPositions = concatenateTableValues();
@@ -727,11 +731,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
       startUpdatingCharts();
       isUpdating = true;
+      let rowNumb = 1;
       addTableRow()
     }
   });
 
-  document.getElementById("stopButton").addEventListener("click", function() {
+  //let rowNumb = 1;
+  document.getElementById("addRows").addEventListener("click", function () {
+    const table = document.getElementById("responsive-table").getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
+  
+    // Add cells to the row
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    const cell3 = newRow.insertCell(2);
+    const cell4 = newRow.insertCell(3);
+    const cell5 = newRow.insertCell(4);
+  
+    //Incread new row
+    rowNumb++;
+  
+    // Add content to the cells
+    // updateIntervalD for distance 
+    // updateIntervalT for torque
+    // updateIntervalP for power 
+    // updateIntervalE for encoder
+    cell1.innerHTML = Math.floor(Date.now() / 1000);
+    cell2.innerHTML = updateIntervalE;
+    cell3.innerHTML = updateIntervalD;
+    cell4.innerHTML = updateIntervalT;
+    cell5.innerHTML = updateIntervalP;
+    // cell2.innerHTML = 300;
+    // cell3.innerHTML = 500;
+    // cell4.innerHTML = 600;
+    // cell5.innerHTML = 800;
+  });
+
+  document.getElementById("stopButton").addEventListener("click", function () {
     if (isUpdating) {
       toggleBlue(this);
       sendCommandToESP8266('stop');
@@ -742,47 +778,48 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  document.getElementById("resetButton").addEventListener("click", function() {
-      toggleBlue(this);
-      sendCommandToESP8266('reset');
-      clearTable();
+  document.getElementById("resetButton").addEventListener("click", function () {
+    toggleBlue(this);
+    sendCommandToESP8266('reset');
+    clearTable();
 
-      resetCharts();
+    resetCharts();
   });
-  document.getElementById("exportButton").addEventListener("click", function() {
-      toggleBlue(this);
-      sendCommandToESP8266('export');
+  document.getElementById("exportButton").addEventListener("click", function () {
+    //toggleBlue(this);
+    //endCommandToESP8266('export');
+    exportExcel();
   });
- 
-  document.getElementById("DrillButton").addEventListener("click", function() {
-      drillState = !drillState; // Toggle the state
-      const command = drillState ? "drill/on" : "drill/off";
-      sendCommandToESP8266(command);
-      updateDrillButtonState(this, drillState);
+
+  document.getElementById("DrillButton").addEventListener("click", function () {
+    drillState = !drillState; // Toggle the state
+    const command = drillState ? "drill/on" : "drill/off";
+    sendCommandToESP8266(command);
+    updateDrillButtonState(this, drillState);
   });
 
   function updateDrillButtonState(button, state) {
-     
-      const innerSpan = button.querySelector('.toggle-button-inner');
-      if (state) {
-          button.classList.remove('off');
-      } else {
-          button.classList.add('off');
-      }
+
+    const innerSpan = button.querySelector('.toggle-button-inner');
+    if (state) {
+      button.classList.remove('off');
+    } else {
+      button.classList.add('off');
+    }
   }
 
   function sendCommandToESP8266(command, data = '') {
     fetch(`/${command}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: data ? `data=${encodeURIComponent(data)}` : ''
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: data ? `data=${encodeURIComponent(data)}` : ''
     })
-    .then(response => response.text())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
+      .then(response => response.text())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
   }
-/* Setting nút nhấn sáng */
-  function toggleBlue(button) { 
+  /* Setting nút nhấn sáng */
+  function toggleBlue(button) {
     document.getElementById("startButton").classList.remove("blue");
     document.getElementById("stopButton").classList.remove("blue");
     document.getElementById("resetButton").classList.remove("blue");
@@ -793,28 +830,28 @@ document.addEventListener('DOMContentLoaded', function() {
   function concatenateTableValues() {
     const tableBody = document.getElementById('table-body');
     if (!tableBody) {
-        return ''; // If the table doesn't exist, return an empty string
+      return ''; // If the table doesn't exist, return an empty string
     }
     const rows = tableBody.getElementsByTagName('tr');
     let result = '';
 
     for (let i = 0; i < rows.length; i++) {
-        const cells = rows[i].getElementsByTagName('td');
-        let rowValues = [];
-        for (let j = 0; j < cells.length - 1; j++) { // Exclude the last cell with the buttons
-            rowValues.push(cells[j].textContent);
-        }
-        result += (i === 0 ? '' : '\n') + rowValues.join(',');
+      const cells = rows[i].getElementsByTagName('td');
+      let rowValues = [];
+      for (let j = 0; j < cells.length - 1; j++) { // Exclude the last cell with the buttons
+        rowValues.push(cells[j].textContent);
+      }
+      result += (i === 0 ? '' : '\n') + rowValues.join(',');
     }
 
     return result;
   }
 
   function clearTable() {
-      const tableBody = document.getElementById('table-body');
-      if (tableBody) {
-          tableBody.innerHTML = '';
-      }
+    const tableBody = document.getElementById('table-body');
+    if (tableBody) {
+      tableBody.innerHTML = '';
+    }
   }
 });
 
@@ -829,33 +866,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const zValue = document.getElementById('z-value');
 
   xPosition.addEventListener('input', () => {
-      xValue.value = xPosition.value;
-      enforceMaxValue(xValue);
+    xValue.value = xPosition.value;
+    enforceMaxValue(xValue);
   });
 
   yPosition.addEventListener('input', () => {
-      yValue.value = yPosition.value;
-      enforceMaxValue(yValue);
+    yValue.value = yPosition.value;
+    enforceMaxValue(yValue);
   });
 
   zPosition.addEventListener('input', () => {
-      zValue.value = zPosition.value;
-      enforceMaxValue(zValue);
+    zValue.value = zPosition.value;
+    enforceMaxValue(zValue);
   });
 
   xValue.addEventListener('input', () => {
-      xPosition.value = xValue.value;
-      enforceMaxValue(xValue);
+    xPosition.value = xValue.value;
+    enforceMaxValue(xValue);
   });
 
   yValue.addEventListener('input', () => {
-      yPosition.value = yValue.value;
-      enforceMaxValue(yValue);
+    yPosition.value = yValue.value;
+    enforceMaxValue(yValue);
   });
 
   zValue.addEventListener('input', () => {
-      zPosition.value = zValue.value;
-      enforceMaxValue(zValue);
+    zPosition.value = zValue.value;
+    enforceMaxValue(zValue);
   });
 });
 
@@ -864,9 +901,9 @@ function enforceMaxValue(input) {
   const max = parseFloat(input.max);
 
   if (value > max) {
-      input.value = max;
+    input.value = max;
   } else if (value < 0) {
-      input.value = 0;
+    input.value = 0;
   }
 }
 
@@ -916,7 +953,7 @@ function editRow(button) {
   cells[2].innerHTML = `<input type="number" value="${zValue}" class="edit-input" id="edit-z" min="0" max="700" oninput="enforceMaxValue(this)">`;
 
   button.textContent = 'Save';
-  button.onclick = function() { saveRow(this); };
+  button.onclick = function () { saveRow(this); };
 }
 
 function saveRow(button) {
@@ -936,7 +973,7 @@ function saveRow(button) {
   cells[2].textContent = zValue;
 
   button.textContent = 'Edit';
-  button.onclick = function() { editRow(this); };
+  button.onclick = function () { editRow(this); };
 }
 
 function deleteRow(button) {
@@ -950,12 +987,12 @@ function concatenateTableValues() {
   let result = '';
 
   for (let i = 0; i < rows.length; i++) {
-      const cells = rows[i].getElementsByTagName('td');
-      let rowValues = [];
-      for (let j = 0; j < cells.length - 1; j++) { // Exclude the last cell with the buttons
-          rowValues.push(cells[j].textContent);
-      }
-      result += (i === 0 ? '' : '\n') + rowValues.join(',');
+    const cells = rows[i].getElementsByTagName('td');
+    let rowValues = [];
+    for (let j = 0; j < cells.length - 1; j++) { // Exclude the last cell with the buttons
+      rowValues.push(cells[j].textContent);
+    }
+    result += (i === 0 ? '' : '\n') + rowValues.join(',');
   }
 
   return result;
@@ -975,20 +1012,22 @@ function toggleBlue(button) {
 
 /*  srcoll bar */
 function syncInputs(rangeInput, numberInput) {
-  rangeInput.addEventListener('input', function() {
+  if (rangeInput != null && numberInput != null){
+    rangeInput.addEventListener('input', function () {
       const value = (this.value - this.min) / (this.max - this.min) * 100;
       this.style.background = `linear-gradient(to right, #42b0ff ${value}%, #ccc ${value}%)`;
       numberInput.value = this.value;
-  });
-
-  numberInput.addEventListener('input', function() {
+    });
+  
+    numberInput.addEventListener('input', function () {
       rangeInput.value = this.value;
       const value = (this.value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
       rangeInput.style.background = `linear-gradient(to right, #42b0ff ${value}%, #ccc ${value}%)`;
-  });
-
-  // Initialize the background based on the initial value
-  rangeInput.dispatchEvent(new Event('input'));
+    });
+  
+    // Initialize the background based on the initial value
+    rangeInput.dispatchEvent(new Event('input'));
+  }
 }
 
 const xRange = document.getElementById('x-position');
@@ -1058,20 +1097,20 @@ document.addEventListener("DOMContentLoaded", function () {
   syncInputs(zRange, zNumber, 'woodPiece'); // Control wood - yellowbar
 
   function cncToPixels(cncX, cncY) {
-    const isSmallScreen = smallScreen.matches;  
+    const isSmallScreen = smallScreen.matches;
     const panelWidth = isSmallScreen ? 295 : 497;
     const panelHeight = isSmallScreen ? 347 : 498;
-    
+
     const originX = panelWidth;
     const originY = panelHeight;
-  
+
     const pixelY = originY - (cncY / 1650) * panelHeight;
     const pixelX = originX - (cncX / 2250) * panelWidth;
-  
+
     return { pixelX, pixelY };
   }
-  
-  
+
+
 
   function updateWoodPiecePosition(cncX, cncZ) {
     position.x = parseInt(cncX, 10);
@@ -1132,7 +1171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const speed = 1;
     clearInterval(intervalId);
     intervalId = setInterval(() => {
-      let deltaX = targetPosition.x - position.x; 
+      let deltaX = targetPosition.x - position.x;
       let deltaY = targetPosition.y - position.y;
       let deltaZ = targetPosition.z - position.z;
 
@@ -1199,7 +1238,7 @@ document.addEventListener("DOMContentLoaded", function () {
     woodPiece.style.left = yellowBarleft.style.left;
   });
 
-  smallScreen.addEventListener('change', function() {
+  smallScreen.addEventListener('change', function () {
     updateWoodPiecePosition(position.x, position.z);
     updateDrillBitPosition(position.y);
   });
@@ -1208,76 +1247,129 @@ document.addEventListener("DOMContentLoaded", function () {
   updateDrillBitPosition(0); // Initialize drill bit position
 });
 
- 
 
-  // Function to start updating charts
-  function startUpdatingCharts() {  
-    if (!updateIntervalD) {
-      updateIntervalD = setInterval(function() { requestData("/distance", chartD); }, 300);
-    }
-    if (!updateIntervalT) {
-      updateIntervalT = setInterval(function() { requestData("/torque", chartT); }, 300);
-    }
-    if (!updateIntervalP) {
-      updateIntervalP = setInterval(function() { requestData("/power", chartP); }, 300);
-    }
-    if (!updateIntervalE) {
-      updateIntervalE = setInterval(function() { requestData("/encoder", chartE); }, 300);
-    }
+
+// Function to start updating charts
+function startUpdatingCharts() {
+  if (!updateIntervalD) {
+    updateIntervalD = setInterval(function () { requestData("/distance", chartD); }, 300);
   }
-
-  // Function to stop updating charts
-  function stopUpdatingCharts() {
-    clearInterval(updateIntervalD);
-    clearInterval(updateIntervalT);
-    clearInterval(updateIntervalP);
-    clearInterval(updateIntervalE);
-    updateIntervalD = null;
-    updateIntervalT = null;
-    updateIntervalP = null;
-    updateIntervalE = null;
+  if (!updateIntervalT) {
+    updateIntervalT = setInterval(function () { requestData("/torque", chartT); }, 300);
   }
-
-  // Function to reset charts
-  function resetCharts() {
-    chartD.series[0].setData([]);
-    chartT.series[0].setData([]);
-    chartP.series[0].setData([]);
-    chartE.series[0].setData([]);
+  if (!updateIntervalP) {
+    updateIntervalP = setInterval(function () { requestData("/power", chartP); }, 300);
   }
+  if (!updateIntervalE) {
+    updateIntervalE = setInterval(function () { requestData("/encoder", chartE); }, 300);
+  }
+}
 
-  function addTableRow(){
-    const rowNumb = 1;
+// Function to stop updating charts
+function stopUpdatingCharts() {
+  clearInterval(updateIntervalD);
+  clearInterval(updateIntervalT);
+  clearInterval(updateIntervalP);
+  clearInterval(updateIntervalE);
+  updateIntervalD = null;
+  updateIntervalT = null;
+  updateIntervalP = null;
+  updateIntervalE = null;
+}
 
-    const table = document.getElementById("responsive-table").getElementsByTagName('tbody')[0];
+// Function to reset charts
+function resetCharts() {
+  chartD.series[0].setData([]);
+  chartT.series[0].setData([]);
+  chartP.series[0].setData([]);
+  chartE.series[0].setData([]);
+}
+
+function showStatus(message, isError = false) {
+  const status = document.getElementById('status');
+  status.textContent = message;
+  status.style.display = 'block';
+  status.className = isError ? 'error' : 'success';
+  setTimeout(() => {
+      status.style.display = 'none';
+  }, 3000);
+}
+
+function addTableRow() {
+  const table = document.getElementById("responsive-table").getElementsByTagName('tbody')[0];
     const newRow = table.insertRow();
-      
+  
     // Add cells to the row
     const cell1 = newRow.insertCell(0);
     const cell2 = newRow.insertCell(1);
     const cell3 = newRow.insertCell(2);
     const cell4 = newRow.insertCell(3);
     const cell5 = newRow.insertCell(4);
-
+  
     //Incread new row
-    rowNumber++;
-
+    rowNumb++;
+  
     // Add content to the cells
     // updateIntervalD for distance 
     // updateIntervalT for torque
     // updateIntervalP for power 
     // updateIntervalE for encoder
     cell1.innerHTML = Math.floor(Date.now() / 1000);
-    // cell2.innerHTML = updateIntervalE;
-    // cell3.innerHTML = updateIntervalD;
-    // cell4.innerHTML = updateIntervalT;
-    // cell5.innerHTML = updateIntervalP;
-    cell2.innerHTML = 300;
-    cell3.innerHTML = 500;
-    cell4.innerHTML = 600;
-    cell5.innerHTML = 800;
-  }
+    cell2.innerHTML = updateIntervalE;
+    cell3.innerHTML = updateIntervalD;
+    cell4.innerHTML = updateIntervalT;
+    cell5.innerHTML = updateIntervalP;
+    // cell2.innerHTML = 300;
+    // cell3.innerHTML = 500;
+    // cell4.innerHTML = 600;
+    // cell5.innerHTML = 800;
+}
 
+function exportExcel() {
+  try {
+      const table = document.getElementById("responsive-table");
+      if (!table) {
+          showStatus('Table not found', true);
+          return;
+      }
+
+      // Create CSV content
+      const rows = [];
+      
+      // Get headers
+      const headers = Array.from(table.rows[0].cells).map(cell => cell.textContent);
+      rows.push(headers.join(','));
+      
+      // Get data rows
+      for (let i = 1; i < table.rows.length; i++) {
+          const row = table.rows[i];
+          const rowData = Array.from(row.cells).map(cell => `"${cell.textContent}"`);
+          rows.push(rowData.join(','));
+      }
+      
+      // Create CSV content
+      const csvContent = rows.join('\n');
+      
+      // Create downloadable link
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = window.URL.createObjectURL(blob);
+      
+      // Create temporary link and trigger download
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'table_data.csv');
+      document.body.appendChild(link);
+      link.click();
+      
+      // Clean up
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      
+      showStatus('Table exported successfully');
+  } catch (error) {
+      showStatus('Error exporting table: ' + error.message, true);
+  }
+}
 
 
 
