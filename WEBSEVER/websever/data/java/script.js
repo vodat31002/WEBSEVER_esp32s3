@@ -720,7 +720,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let updateIntervalD, updateIntervalT, updateIntervalP, updateIntervalE;
 let isUpdating = false;
-
+let rowNumb = 1;
 /* CÀI ĐẶT CÁC NÚT NHẤN CHO 3 CTRINH */
 document.addEventListener('DOMContentLoaded', function () {
   let drillState = false; // false means off, true means on
@@ -732,12 +732,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
       startUpdatingCharts();
       isUpdating = true;
-      let rowNumb = 1;
+      //let rowNumb = 1;
       addTableRow()
     }
   });
 
-  let rowNumb = 1;
+  //let rowNumb = 1;
   document.getElementById("addRows").addEventListener("click", function () {
     const table = document.getElementById("responsive-table").getElementsByTagName('tbody')[0];
     const newRow = table.insertRow();
