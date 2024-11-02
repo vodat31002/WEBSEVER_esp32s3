@@ -685,7 +685,8 @@ document.addEventListener("DOMContentLoaded", function () {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         var x = (new Date()).getTime(),
-          y = parseFloat(this.responseText);
+        y = parseFloat(this.responseText);
+        
         if (chart.series[0].data.length > 40) {
           chart.series[0].addPoint([x, y], true, true, true);
         } else {
@@ -693,8 +694,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
     };
-    //xhttp.open("GET", endpoint, true);
-    //xhttp.send();
+    xhttp.open("GET", endpoint, true);
+    xhttp.send();
   }
 });
 
@@ -757,14 +758,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // updateIntervalP for power 
     // updateIntervalE for encoder
     cell1.innerHTML = Math.floor(Date.now() / 1000);
-    cell2.innerHTML = updateIntervalE;
-    cell3.innerHTML = updateIntervalD;
-    cell4.innerHTML = updateIntervalT;
-    cell5.innerHTML = updateIntervalP;
-    // cell2.innerHTML = 300;
-    // cell3.innerHTML = 500;
-    // cell4.innerHTML = 600;
-    // cell5.innerHTML = 800;
+    // cell2.innerHTML = updateIntervalE;
+    // cell3.innerHTML = updateIntervalD;
+    // cell4.innerHTML = updateIntervalT;
+    // cell5.innerHTML = updateIntervalP;
+    cell2.innerHTML = 300;
+    cell3.innerHTML = 500;
+    cell4.innerHTML = 600;
+    cell5.innerHTML = 800;
   });
 
   document.getElementById("stopButton").addEventListener("click", function () {
